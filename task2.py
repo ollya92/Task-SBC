@@ -19,6 +19,7 @@ while ("_" in word_in_game) and lives > 0:
     letter = input("Input character: ")
 
     # есть ли буква в слове
+    letter = letter.lower()
     if letter in word_right:
         print("You are right! We have this letter in the word!")
         index = -1
