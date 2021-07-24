@@ -1,7 +1,7 @@
 import telebot
 import random
 
-token = 'my_token'
+token = '1my_token'
 bot = telebot.TeleBot(token)
 lives = 10
 letter = ''
@@ -62,14 +62,13 @@ def is_letter(message):
 def no_letter(message):
     global lives, word_right, word_in_game, word_variants, letter
     lives -= 1
-    bot.send_message(message.chat.id, 'There is no such letter in the word! You lost 1 live!\nYou have {live} lives\nWord: {in_word}'.format(live=lives, in_word=word_in_game))
-    """bot.send_message(message.chat.id,
-                     'You have {live} lives\nWord: {in_word}'.format(live=lives, in_word=word_in_game))"""
+    bot.send_message(message.chat.id, 'There is no such letter in the word! You lost 1 live!')
+    bot.send_message(message.chat.id,
+                     'You have {live} lives\nWord: {in_word}'.format(live=lives, in_word=word_in_game))
     bot.register_next_step_handler(message, start_game)
     if lives <= 0:
         bot.send_message(message.chat.id,
-                         'Unfortunately, you are lost all your lives!\nOur word was {in_word}'.format(
-                             in_word=word_right))
+                         'Unfortunately, you are lost all your lives!\nOur word was {in_word}'.format(in_word=word_right))
         msg = bot.send_message(message.from_user.id, 'If you want to play again, just enter /start!')
         lives = 10
         bot.register_next_step_handler(msg, start_game)
